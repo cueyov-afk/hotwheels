@@ -1,0 +1,1005 @@
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #071014;
+}
+
+
+/* =========================
+   PANTALLA INICIAL
+========================= */
+
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #183541,
+            #071014 70%
+        );
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        filter 1s ease;
+}
+
+.intro.hide {
+    opacity: 0;
+    transform: scale(1.15);
+    filter: blur(12px);
+    pointer-events: none;
+}
+
+.intro-content {
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    font-size: clamp(30px, 6vw, 70px);
+    line-height: 1;
+    letter-spacing: 3px;
+}
+
+h1 span {
+    display: block;
+    color: #8edcff;
+}
+
+h1 span:last-child {
+    margin-top: 10px;
+    color: #a88cff;
+    font-size: 0.65em;
+}
+
+.message {
+    max-width: 500px;
+    margin: 30px auto;
+    color: #d8f6ff;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.intro-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 16px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8edcff,
+            #a88cff
+        );
+
+    color: #071014;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px
+        rgba(142, 220, 255, 0.5);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.intro-btn:hover {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 0 30px
+        rgba(142, 220, 255, 0.8);
+}
+
+
+/* =========================
+   BOTÓN DE SONIDO
+========================= */
+
+.sound-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 30;
+
+    border: none;
+    border-radius: 30px;
+
+    padding: 12px 18px;
+
+    background:
+        rgba(142, 220, 255, 0.15);
+
+    color: #d8f6ff;
+
+    border:
+        1px solid
+        rgba(142, 220, 255, 0.5);
+
+    backdrop-filter: blur(8px);
+
+    font-size: 14px;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px
+        rgba(142, 220, 255, 0.25);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.3s ease;
+}
+
+.sound-button:hover {
+    transform: scale(1.05);
+}
+
+.sound-button.active {
+    background:
+        rgba(142, 220, 255, 0.3);
+
+    box-shadow:
+        0 0 20px
+        rgba(142, 220, 255, 0.6);
+}
+
+.sound-button.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+
+/* =========================
+   ESCENA DE CARRERA
+========================= */
+
+.race {
+    position: fixed;
+    inset: 0;
+
+    z-index: 5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #163342,
+            #071014 75%
+        );
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+.race.show {
+    opacity: 1;
+}
+
+.race-text {
+    position: absolute;
+    top: 25%;
+
+    z-index: 4;
+
+    color: #8edcff;
+
+    font-size:
+        clamp(28px, 6vw, 70px);
+
+    font-weight: bold;
+    text-align: center;
+
+    text-shadow:
+        0 0 15px #8edcff,
+        0 0 35px #8edcff;
+}
+
+.race-car {
+    position: absolute;
+
+    width: 340px;
+    height: 170px;
+
+    left: -400px;
+
+    animation:
+        raceCarMove
+        3s
+        linear
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(80, 210, 255, 0.9)
+        );
+}
+
+.race-car svg {
+    width: 100%;
+    height: 100%;
+}
+
+.race-car .moving-car {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes raceCarMove {
+
+    from {
+        left: -400px;
+    }
+
+    to {
+        left: calc(100% + 400px);
+    }
+
+}
+
+
+/* =========================
+   SORPRESA
+========================= */
+
+.surprise {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #17333d 0%,
+            #0c2026 45%,
+            #071014 100%
+        );
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease;
+}
+
+.surprise.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* =========================
+   AUTOS
+========================= */
+
+.cars {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.moving-car {
+    position: absolute;
+
+    width: 240px;
+    height: 130px;
+
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(100, 210, 255, 0.7)
+        );
+
+    pointer-events: auto;
+    cursor: pointer;
+
+    transition:
+        filter 0.2s ease,
+        transform 0.2s ease;
+}
+
+.moving-car:hover {
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(142, 220, 255, 1)
+        );
+
+    transform: scale(1.08);
+}
+
+.moving-car svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+/* AUTOS */
+
+.car-one {
+    top: 8%;
+    animation-name: driveRight;
+    animation-duration: 28s;
+}
+
+.car-two {
+    top: 30%;
+    animation-name: driveLeft;
+    animation-duration: 32s;
+    animation-delay: 3s;
+}
+
+.car-three {
+    top: 52%;
+    animation-name: driveRight;
+    animation-duration: 30s;
+    animation-delay: 5s;
+}
+
+.car-four {
+    top: 68%;
+
+    width: 280px;
+    height: 145px;
+
+    animation-name: driveLeft;
+    animation-duration: 30s;
+
+    z-index: 7;
+
+    opacity: 1;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255, 255, 255, 0.9)
+        )
+        drop-shadow(
+            0 8px 12px
+            rgba(0, 0, 0, 0.8)
+        );
+}
+
+@keyframes driveRight {
+
+    from {
+        left: -300px;
+    }
+
+    to {
+        left: calc(100% + 300px);
+    }
+
+}
+
+@keyframes driveLeft {
+
+    from {
+        left: calc(100% + 300px);
+    }
+
+    to {
+        left: -300px;
+    }
+
+}
+
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+.particles {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #8edcff;
+
+    box-shadow:
+        0 0 8px #8edcff,
+        0 0 18px #8edcff;
+
+    animation:
+        floatParticle
+        linear
+        infinite;
+}
+
+@keyframes floatParticle {
+
+    0% {
+        transform:
+            translateY(30px);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-120px);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   FLORES
+========================= */
+
+.flowers {
+    position: absolute;
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+    overflow: visible;
+}
+
+.flower {
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    animation:
+        flowerFloat
+        4s
+        ease-in-out
+        infinite
+        alternate;
+
+    pointer-events: none;
+}
+
+.flower svg {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    overflow: visible;
+
+    filter:
+        drop-shadow(
+            0 0 7px
+            rgba(142, 220, 255, 0.8)
+        );
+}
+
+@keyframes flowerFloat {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    to {
+        transform:
+            translateY(-15px)
+            rotate(5deg);
+    }
+
+}
+
+
+/* =========================
+   MARIPOSAS
+========================= */
+
+.butterflies {
+    position: absolute;
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+.butterfly {
+    position: absolute;
+
+    width: 45px;
+    height: 35px;
+
+    animation:
+        butterflyFloat
+        7s
+        ease-in-out
+        infinite,
+
+        butterflyMove
+        14s
+        linear
+        infinite
+        alternate;
+
+    pointer-events: none;
+}
+
+.butterfly::before,
+.butterfly::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+
+    width: 22px;
+    height: 30px;
+
+    border-radius:
+        70% 30% 70% 30%;
+
+    background: #a88cff;
+
+    box-shadow:
+        0 0 10px
+        rgba(168, 140, 255, 0.8);
+}
+
+.butterfly::before {
+    left: 0;
+
+    transform-origin:
+        right center;
+
+    animation:
+        wingLeft
+        0.6s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.butterfly::after {
+    right: 0;
+
+    transform-origin:
+        left center;
+
+    animation:
+        wingRight
+        0.6s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes wingLeft {
+
+    from {
+        transform:
+            rotateY(0deg);
+    }
+
+    to {
+        transform:
+            rotateY(55deg);
+    }
+
+}
+
+@keyframes wingRight {
+
+    from {
+        transform:
+            rotateY(0deg);
+    }
+
+    to {
+        transform:
+            rotateY(-55deg);
+    }
+
+}
+
+@keyframes butterflyFloat {
+
+    0% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-25px);
+    }
+
+    100% {
+        transform:
+            translateY(0);
+    }
+
+}
+
+@keyframes butterflyMove {
+
+    from {
+        left: -50px;
+    }
+
+    to {
+        left: calc(100% + 50px);
+    }
+
+}
+
+
+/* =========================
+   MENSAJE FINAL
+========================= */
+
+.surprise-content {
+    position: absolute;
+    inset: 0;
+
+    z-index: 8;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    pointer-events: none;
+
+    padding: 20px;
+}
+
+.final-line {
+    width: 100px;
+    height: 3px;
+
+    margin-bottom: 25px;
+
+    background: #8edcff;
+
+    box-shadow:
+        0 0 15px #8edcff;
+}
+
+.surprise-content h2 {
+    color: white;
+
+    font-size:
+        clamp(45px, 9vw, 100px);
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 15px #8edcff,
+        0 0 40px #8edcff;
+}
+
+.surprise-content h3 {
+    color: #a88cff;
+
+    font-size:
+        clamp(30px, 6vw, 60px);
+
+    margin-top: 10px;
+
+    text-shadow:
+        0 0 15px #a88cff;
+}
+
+.surprise-content p {
+    color: #d8f6ff;
+
+    margin-top: 20px;
+
+    font-size: 20px;
+}
+
+.final-glow {
+    color: #8edcff;
+
+    font-size: 35px;
+
+    margin-top: 20px;
+
+    animation:
+        glow
+        1.5s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes glow {
+
+    from {
+        opacity: 0.4;
+        transform:
+            scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1.2);
+    }
+
+}
+
+
+/* =========================
+   PANTALLAS SECRETAS
+========================= */
+
+.secret-screen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #173d49 0%,
+            #0b2028 50%,
+            #050c10 100%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
+}
+
+.secret-screen.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+.secret-content {
+    width: min(800px, 90%);
+
+    text-align: center;
+
+    animation:
+        secretAppear
+        0.8s
+        ease;
+}
+
+.secret-number {
+    color: #8edcff;
+
+    font-size: 18px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 30px;
+
+    text-transform: uppercase;
+}
+
+.secret-message {
+    color: white;
+
+    font-size:
+        clamp(28px, 5vw, 55px);
+
+    line-height: 1.25;
+
+    text-shadow:
+        0 0 15px
+        rgba(142, 220, 255, 0.8),
+        0 0 40px
+        rgba(168, 140, 255, 0.5);
+}
+
+.secret-hint {
+    display: block;
+
+    margin-top: 45px;
+
+    color: #8edcff;
+
+    font-size: 14px;
+
+    opacity: 0.7;
+
+    animation:
+        hintPulse
+        1.8s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes secretAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.85)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+@keyframes hintPulse {
+
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    .intro-content {
+        padding: 20px;
+    }
+
+    .message {
+        font-size: 16px;
+        margin: 22px auto;
+    }
+
+    .intro-btn {
+        padding: 14px 24px;
+        font-size: 14px;
+    }
+
+    .race-car {
+        width: 280px;
+        height: 140px;
+    }
+
+    .moving-car {
+        width: 200px;
+        height: 110px;
+    }
+
+    .car-four {
+        width: 240px;
+        height: 125px;
+        top: 70%;
+    }
+
+    .flower {
+        width: 34px;
+        height: 34px;
+    }
+
+    .butterfly {
+        transform: scale(0.8);
+    }
+
+    .surprise-content h2 {
+        font-size:
+            clamp(42px, 12vw, 70px);
+    }
+
+    .surprise-content h3 {
+        font-size:
+            clamp(28px, 9vw, 50px);
+    }
+
+    .surprise-content p {
+        font-size: 17px;
+    }
+
+    .sound-button {
+        right: 12px;
+        bottom: 12px;
+        font-size: 12px;
+    }
+
+    .secret-message {
+        font-size:
+            clamp(25px, 8vw, 42px);
+    }
+
+    .secret-hint {
+        margin-top: 35px;
+        font-size: 13px;
+    }
+}
